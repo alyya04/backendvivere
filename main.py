@@ -1,28 +1,19 @@
 import numpy as np
-import os
 import tensorflow as tf
 import tensorflow_hub as hub
-import matplotlib.pyplot as plt
 from tqdm import tqdm
-from shutil import copyfile
-import re
-from shutil import move
 from werkzeug.utils import secure_filename
 import urllib.request
 
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
 from tensorflow.keras.preprocessing import image
 
-# from keras.models import load_model
-# from keras.preprocessing import image
 
 # Flask utils
 from flask import Flask, redirect, url_for, request, render_template, jsonify, flash
-#from flask_ngrok import run_with_ngrok
 
 # Define a flask app
 app = Flask(__name__)
-#run_with_ngrok(app)
 
 # Load your trained model
 model = tf.keras.models.load_model('modelv1.h5',custom_objects={'KerasLayer':hub.KerasLayer})
@@ -61,4 +52,4 @@ def upload_image():
 
 if __name__ == '__main__':
     # app.debug = True
-    app.run(host='0.0.0.0', port=8080, debug=True)
+    app.run(debug=True)
